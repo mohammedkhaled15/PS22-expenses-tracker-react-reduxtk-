@@ -3,7 +3,7 @@ body {
   font-family: "Poppins", sans-serif;
 }
 .hr-divider {
-  background-color: #c0c0c0;
+  background-color: rgb(192, 192, 192);
   height: 0.1rem;
   width: 100%;
   margin: 0.5rem 0 1.5rem;
