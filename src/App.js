@@ -6,9 +6,11 @@ import Balance from "./components/Balance";
 import History from "./components/History";
 import Controls from "./components/Controls";
 import NewTransModal from "./components/NewTransModal";
+import ManageHistory from "./components/ManageHistory";
 
 function App() {
   const [showNew, setShowNew] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
   return (
     <div className="App my-5">
       <Container style={{ marginTop: "40px" }}>
@@ -23,8 +25,9 @@ function App() {
             <h1 className="text-center my-4 fs-3">Expenses Tracker</h1>
             <Balance />
             <History />
-            <Controls setShowNew={setShowNew} />
+            <Controls setShowNew={setShowNew} setShowEdit={setShowEdit} />
             {showNew ? <NewTransModal setShowNew={setShowNew} /> : null}
+            {showEdit ? <ManageHistory setShowEdit={setShowEdit} /> : null}
           </Col>
         </Row>
       </Container>

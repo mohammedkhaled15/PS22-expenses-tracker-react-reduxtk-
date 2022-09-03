@@ -6,25 +6,36 @@ const initialState = {
   income: 0,
   expense: 0,
 };
+
+const calcPatameters = (state) => {
+  state.balance = state.records.reduce(
+    (total, record) => total + record.amount,
+    0
+  );
+  state.income = state.records
+    .filter((record) => record.sign === "positive")
+    .reduce((total, record) => total + record.amount, 0);
+  state.expense = state.records
+    .filter((record) => record.sign === "negative")
+    .reduce((total, record) => total + record.amount, 0);
+};
+
 const recordSlice = createSlice({
   name: "record",
   initialState,
   reducers: {
     saving: (state, action) => {
       state.records.push(action.payload);
-      state.balance = state.records.reduce(
-        (total, record) => total + record.amount,
-        0
+      calcPatameters(state);
+    },
+    deleteRec: (state, action) => {
+      state.records = state.records.filter(
+        (record) => record.id !== action.payload
       );
-      state.income = state.records
-        .filter((record) => record.sign === "positive")
-        .reduce((total, record) => total + record.amount, 0);
-      state.expense = state.records
-        .filter((record) => record.sign === "negative")
-        .reduce((total, record) => total + record.amount, 0);
+      calcPatameters(state);
     },
   },
 });
 
 export default recordSlice.reducer;
-export const { saving } = recordSlice.actions;
+export const { saving, deleteRec } = recordSlice.actions;

@@ -17,7 +17,7 @@ const History = () => {
                                 <span>{record.desc}</span>
                                 <span>{`$${record.amount.toFixed(2)}`}</span>
                             </div>)
-                    }) : <h2>No transaction to display</h2>
+                    }) : <h6>No transactions to display</h6>
 
                 }
                 {/* <div className="card d-flex justify-content-between flex-row py-2 px-4 shadow-sm bg-success my-2 text-light">

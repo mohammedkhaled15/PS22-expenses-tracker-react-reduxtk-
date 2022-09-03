@@ -5,6 +5,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { saving } from './redux/recordSlice';
+import nextId from "react-id-generator";
 
 
 const NewTransModal = ({ setShowNew }) => {
@@ -16,12 +17,15 @@ const NewTransModal = ({ setShowNew }) => {
     const dispatch = useDispatch()
     const records = useSelector(state => state.records)
 
+    const recordId = nextId()
+
     const handleSaving = (e) => {
         e.preventDefault()
         if (desc === "" || amount === 0) {
             alert("please don't leave fields empty!")
         } else {
             dispatch(saving({
+                id: recordId,
                 desc,
                 amount: sign === "positive" ? +amount : -Math.abs(amount),
                 sign,
@@ -42,8 +46,8 @@ const NewTransModal = ({ setShowNew }) => {
 
     return (
         <div className='new-modal  w-100 position-absolute h-100 start-50 top-50 translate-middle' style={{ backgroundColor: "rgba(192, 192, 192,0.8)" }}>
-            <div className=' position-absolute start-50 top-50 translate-middle rounded-3 p-4 bg-secondary bg-gradient bg-opacity-75'>
-                <h3>Add New Transaction</h3>
+            <div className=' position-absolute start-50 top-50 translate-middle rounded-3 p-4 bg-secondary bg-gradient bg-opacity-75 w-75'>
+                <h4>Add New Transaction</h4>
                 <div className="hr-divider"></div>
                 <Form>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
