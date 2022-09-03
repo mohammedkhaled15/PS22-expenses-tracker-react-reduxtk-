@@ -3,6 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   records: [],
   balance: 0,
+  income: 0,
+  expense: 0,
 };
 const recordSlice = createSlice({
   name: "record",
@@ -14,6 +16,12 @@ const recordSlice = createSlice({
         (total, record) => total + record.amount,
         0
       );
+      state.income = state.records
+        .filter((record) => record.sign === "positive")
+        .reduce((total, record) => total + record.amount, 0);
+      state.expense = state.records
+        .filter((record) => record.sign === "negative")
+        .reduce((total, record) => total + record.amount, 0);
     },
   },
 });

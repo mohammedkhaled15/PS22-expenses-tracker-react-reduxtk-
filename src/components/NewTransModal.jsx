@@ -18,17 +18,28 @@ const NewTransModal = ({ setShowNew }) => {
 
     const handleSaving = (e) => {
         e.preventDefault()
-        dispatch(saving({
-            desc,
-            amount: sign === "positive" ? +amount : -Math.abs(amount),
-            sign,
-        }))
+        if (desc === "" || amount === 0) {
+            alert("please don't leave fields empty!")
+        } else {
+            dispatch(saving({
+                desc,
+                amount: sign === "positive" ? +amount : -Math.abs(amount),
+                sign,
+            }))
+        }
+        reset()
     }
     console.log("saving", records)
 
     const handleClose = () => {
         setShowNew(false)
     }
+
+    const reset = () => {
+        setDesc("")
+        setAmount(0)
+    }
+
     return (
         <div className='new-modal  w-100 position-absolute h-100 start-50 top-50 translate-middle' style={{ backgroundColor: "rgba(192, 192, 192,0.8)" }}>
             <div className=' position-absolute start-50 top-50 translate-middle rounded-3 p-4 bg-secondary bg-gradient bg-opacity-75'>
