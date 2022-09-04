@@ -34,8 +34,18 @@ const recordSlice = createSlice({
       );
       calcPatameters(state);
     },
+    editRec: (state, action) => {
+      const recordToBeEdit = state.records.filter(
+        (record) => record.id === action.payload.id
+      )[0];
+      console.log(action.payload.editedAmount);
+      recordToBeEdit.desc = action.payload.editedDesc;
+      recordToBeEdit.amount = Number(action.payload.editedAmount);
+      recordToBeEdit.sign = action.payload.editedSign;
+      calcPatameters(state);
+    },
   },
 });
 
 export default recordSlice.reducer;
-export const { saving, deleteRec } = recordSlice.actions;
+export const { saving, deleteRec, editRec } = recordSlice.actions;

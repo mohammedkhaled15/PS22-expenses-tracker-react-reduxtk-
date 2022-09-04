@@ -1,64 +1,46 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Form from "react-bootstrap/Form"
 import Button from 'react-bootstrap/esm/Button'
 import InputGroup from 'react-bootstrap/InputGroup';
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { saving } from './redux/recordSlice';
-import nextId from "react-id-generator";
+import { useSelector, useDispatch } from 'react-redux';
+import { editRec } from "./redux/recordSlice"
 
+const EditingComponent = ({ recordToBeEdit, setShowEditBoard }) => {
 
-const NewTransModal = ({ setShowNew }) => {
-
-    const [desc, setDesc] = useState("")
-    const [amount, setAmount] = useState(0)
-    const [sign, setSign] = useState("positive")
-
-    const dispatch = useDispatch()
     const records = useSelector(state => state.records)
+    const dispatch = useDispatch()
 
-    const recordId = nextId()
+    const record = records.records.filter(record => record.id === recordToBeEdit)[0]
+
+    const [editedDesc, setEditedDesc] = useState(record.desc)
+    const [editedAmount, setEditedAmount] = useState(record.amount)
+    const [editedSign, setEditedSign] = useState(record.sign)
+
+    const handleCancel = () => {
+        setShowEditBoard(false)
+    }
 
     const handleSaving = (e) => {
         e.preventDefault()
-        if (desc === "" || amount === 0) {
-            alert("please don't leave fields empty!")
-        } else {
-            dispatch(saving({
-                id: recordId,
-                desc,
-                amount: sign === "positive" ? +amount : -Math.abs(amount),
-                sign,
-            }))
-        }
-        reset()
+        dispatch(editRec({ id: record.id, editedDesc, editedAmount, editedSign }))
+        setShowEditBoard(false)
     }
 
-    console.log("saving", records)
 
-    const handleClose = () => {
-        setShowNew(false)
-    }
-
-    const reset = () => {
-        setDesc("")
-        setAmount(0)
-    }
+    console.log(record)
 
     return (
         <div className='new-modal  w-100 position-absolute h-100 start-50 top-50 translate-middle' style={{ backgroundColor: "rgba(192, 192, 192,0.8)" }}>
             <div className=' position-absolute start-50 top-50 translate-middle rounded-3 p-4 bg-secondary bg-gradient bg-opacity-75 w-75'>
-                <h4>Add New Transaction</h4>
-                <div className="hr-divider"></div>
                 <Form>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Details of your transaction:</Form.Label>
                         <Form.Control
                             type="text"
                             placeholder="Enter details"
-                            value={desc}
+                            value={editedDesc}
                             onChange={(e) => {
-                                setDesc(e.target.value)
+                                setEditedDesc(e.target.value)
                             }}
                         />
                         <Form.Text className="text-muted">
@@ -72,7 +54,8 @@ const NewTransModal = ({ setShowNew }) => {
                             name="group1"
                             type="radio"
                             id={`inline-radio-1`}
-                            onClick={() => setSign("positive")}
+                            // checked={editedSign === "positive" ? true : false}
+                            onClick={() => setEditedSign("positive")}
                         />
                         <Form.Check
                             inline
@@ -80,7 +63,8 @@ const NewTransModal = ({ setShowNew }) => {
                             name="group1"
                             type="radio"
                             id={`inline-radio-2`}
-                            onClick={() => setSign("negative")}
+                            // checked={editedSign === "negative" ? true : false}
+                            onClick={() => setEditedSign("negative")}
                         />
                     </InputGroup>
                     <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -89,22 +73,23 @@ const NewTransModal = ({ setShowNew }) => {
                             type="number"
                             placeholder="Amount"
                             min={1}
-                            value={amount}
-                            onChange={e => setAmount(e.target.value)}
+                            value={editedAmount}
+                            onChange={e => setEditedAmount(e.target.value)}
                         />
                     </Form.Group>
                     <div className='d-flex justify-content-evenly'>
                         <Button variant="primary" type="submit" onClick={(e) => handleSaving(e)}>
-                            Add
+                            Save
                         </Button>
-                        <Button variant="danger" type="button" onClick={handleClose}>
-                            Close
+                        <Button variant="danger" type="button" onClick={handleCancel}>
+                            Cancel
                         </Button>
                     </div>
                 </Form>
             </div>
+
         </div>
     )
 }
 
-export default NewTransModal
+export default EditingComponent
