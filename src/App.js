@@ -12,17 +12,20 @@ function App() {
   const [showNew, setShowNew] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   return (
-    <div className="App my-5">
-      <Container style={{ marginTop: "40px" }}>
-        <Row className="justify-content-center">
+    <div className="App my-5 d-flex align-items-center">
+      <Container
+        style={{ marginTop: "40px" }}
+        className="d-flex justify-content-center"
+      >
+        <Row className="justify-content-center w-100 ">
           <Col
             xl={4}
-            lg={4}
+            lg={5}
             md={6}
-            xs={12}
+            xs={11}
             className="border shadow-lg rounded-4"
           >
-            <h1 className="text-center my-4 fs-3">Expenses Tracker</h1>
+            <h1 className="text-center my-4 fs-3 fw-bold">Expenses Tracker</h1>
             <Balance />
             <History />
             <Controls setShowNew={setShowNew} setShowEdit={setShowEdit} />
