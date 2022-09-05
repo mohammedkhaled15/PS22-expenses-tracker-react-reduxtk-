@@ -46,8 +46,8 @@ const NewTransModal = ({ setShowNew }) => {
     }
 
     return (
-        <div className='new-modal  w-100 position-absolute h-100 start-50 top-50 translate-middle' style={{ backgroundColor: "rgba(192, 192, 192,0.8)" }}>
-            <div className=' position-absolute start-50 top-50 translate-middle rounded-3 p-4 bg-secondary bg-gradient bg-opacity-75 w-75'>
+        <div onClick={handleClose} className='new-modal  w-100 position-absolute h-100 start-50 top-50 translate-middle' style={{ backgroundColor: "rgba(192, 192, 192,0.8)" }}>
+            <div onClick={e => e.stopPropagation()} className=' position-absolute start-50 top-50 translate-middle rounded-3 p-4 bg-secondary bg-gradient bg-opacity-75 w-75'>
                 <h4>Add New Transaction</h4>
                 <div className="hr-divider"></div>
                 <Form>
@@ -65,13 +65,14 @@ const NewTransModal = ({ setShowNew }) => {
                             write whatever you want
                         </Form.Text>
                     </Form.Group>
-                    <InputGroup style={{ justifyContent: "space-evenly" }}>
+                    <InputGroup style={{ justifyContent: "space-evenly", marginBottom: "1rem" }}>
                         <Form.Check
                             inline
                             label="Income"
                             name="group1"
                             type="radio"
                             id={`inline-radio-1`}
+                            defaultChecked={true}
                             onClick={() => setSign("positive")}
                         />
                         <Form.Check

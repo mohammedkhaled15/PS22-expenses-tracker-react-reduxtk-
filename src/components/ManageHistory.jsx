@@ -31,18 +31,18 @@ const ManageHistory = ({ setShowEdit }) => {
 
     return (
         <>
-            {showEditBoard ? <EditingComponent recordToBeEdit={recordToBeEdit} setShowEditBoard={setShowEditBoard} /> : <div div className='manage-history-modal  w-100 position-absolute h-100 start-50 top-50 translate-middle' style={{ backgroundColor: "rgba(192, 192, 192,0.8)" }}>
-                <div className='manage-history position-absolute start-50 top-50 translate-middle rounded-3 p-4 bg-secondary bg-gradient bg-opacity-75 text-center'>
+            {showEditBoard ? <EditingComponent recordToBeEdit={recordToBeEdit} setShowEditBoard={setShowEditBoard} /> : <div onClick={handleClose} className='manage-history-modal  w-100 position-absolute h-100 start-50 top-50 translate-middle' style={{ backgroundColor: "rgba(192, 192, 192,0.8)" }}>
+                <div onClick={e => e.stopPropagation()} className='manage-history position-absolute start-50 top-50 translate-middle rounded-3 p-4 bg-secondary bg-gradient bg-opacity-75 text-center w-75'>
                     <h2 className='fs-5'>History</h2>
                     <div className="hr-divider"></div>
-                    <div className="history-cards">
-                        {console.log(records)}
+                    <div className="history-cards d-flex flex-column w-100 my-4">
+                        {/* {console.log(records)} */}
                         {
                             records.records.length ? records.records.map((record) => {
                                 console.log(records.records)
                                 return (
-                                    <div className={`card d-flex justify-content-between flex-row py-2 px-4 shadow-sm  my-2 ${record.sign === "positive" ? "bg-success" : "bg-danger"} text-light`} style={{ width: "280px" }} key={record.id}>
-                                        <span className='w-25'>{record.desc}</span>
+                                    <div className={`card d-flex justify-content-between flex-row py-2 px-4 shadow-sm  my-2 ${record.sign === "positive" ? "bg-success" : "bg-danger"} text-light w-100`} key={record.id}>
+                                        <span style={{ width: "max-content" }}>{record.desc}</span>
                                         <div className='edit d-flex justify-content-between w-25'>
                                             <FiEdit style={{ cursor: "pointer" }} onClick={(e) => handleEdit(e, record.id)} />
                                             <MdDelete style={{ cursor: "pointer" }} onClick={(e) => handleDelete(e, record.id)} />
