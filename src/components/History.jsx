@@ -14,9 +14,9 @@ const History = () => {
                         return (
                             <div className={`card d-flex justify-content-between flex-row py-2 px-4 shadow-sm  my-2 ${record.sign === "positive" ? "bg-success" : "bg-danger"} text-light`} key={index}>
                                 <span>{record.desc}</span>
-                                <span>{`$${Number(record.amount).toFixed(2)}`}</span>
+                                <span>{`${Number(record.amount).toFixed(2) < 0 ? "-$" + Math.abs(Number(record.amount).toFixed(2)) : "$" + Math.abs(Number(record.amount).toFixed(2))}`}</span>
                             </div>)
-                    }) : <h6>No transactions to display</h6>
+                    }) : <h6 className='text-center'>No transactions to display</h6>
 
                 }
             </div>
