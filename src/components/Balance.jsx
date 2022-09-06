@@ -32,7 +32,7 @@ const Balance = () => {
                             </Button>
                             <Button onClick={() => handleRefinedRecords("negative")} variant="outline-danger" className=" w-50 text-center border-primary  border rounded-2" style={{ cursor: "pointer" }}>
                                 <h3 className='fs-6 text-uppercase fw-bold' style={{ letterSpacing: "0.1rem" }}>Expense</h3>
-                                <span className='fs-5 '>{`${expense === 0 ? "0" : "-$" + Math.abs(expense)}`}</span>
+                                <span className='fs-5 '>{`${expense === 0 ? "$0" : "-$" + Math.abs(expense)}`}</span>
                             </Button>
                         </div>
                         <History />
