@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/expenses-tracker/static/css/main.17021896.css",
-    "main.js": "/expenses-tracker/static/js/main.d6884fd0.js",
-    "index.html": "/expenses-tracker/index.html",
-    "main.17021896.css.map": "/expenses-tracker/static/css/main.17021896.css.map",
-    "main.d6884fd0.js.map": "/expenses-tracker/static/js/main.d6884fd0.js.map"
+    "main.css": "/PS22-expenses-tracker-react-reduxtk/static/css/main.17021896.css",
+    "main.js": "/PS22-expenses-tracker-react-reduxtk/static/js/main.d6884fd0.js",
+    "index.html": "/PS22-expenses-tracker-react-reduxtk/index.html",
+    "main.17021896.css.map": "/PS22-expenses-tracker-react-reduxtk/static/css/main.17021896.css.map",
+    "main.d6884fd0.js.map": "/PS22-expenses-tracker-react-reduxtk/static/js/main.d6884fd0.js.map"
   },
   "entrypoints": [
     "static/css/main.17021896.css",
