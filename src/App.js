@@ -27,7 +27,7 @@ function App() {
           >
             <h1 className="text-center my-4 fs-3 fw-bold">Expenses Tracker</h1>
             <Balance />
-            <History />
+            {/* <History /> */}
             <Controls setShowNew={setShowNew} setShowEdit={setShowEdit} />
             {showNew ? <NewTransModal setShowNew={setShowNew} /> : null}
             {showEdit ? <ManageHistory setShowEdit={setShowEdit} /> : null}
