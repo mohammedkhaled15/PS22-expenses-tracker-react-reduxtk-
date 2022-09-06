@@ -12,9 +12,11 @@ const calcPatameters = (state) => {
     (total, record) => total + record.amount,
     0
   );
+
   state.income = state.records
     .filter((record) => record.sign === "positive")
     .reduce((total, record) => total + record.amount, 0);
+
   state.expense = state.records
     .filter((record) => record.sign === "negative")
     .reduce((total, record) => total + record.amount, 0);
@@ -28,12 +30,14 @@ const recordSlice = createSlice({
       state.records.push(action.payload);
       calcPatameters(state);
     },
+
     deleteRec: (state, action) => {
       state.records = state.records.filter(
         (record) => record.id !== action.payload
       );
       calcPatameters(state);
     },
+
     editRec: (state, action) => {
       const recordToBeEdit = state.records.filter(
         (record) => record.id === action.payload.id

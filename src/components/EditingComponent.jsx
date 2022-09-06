@@ -13,7 +13,7 @@ const EditingComponent = ({ recordToBeEdit, setShowEditBoard }) => {
     const record = records.records.filter(record => record.id === recordToBeEdit)[0]
 
     const [editedDesc, setEditedDesc] = useState(record.desc)
-    const [editedAmount, setEditedAmount] = useState(record.amount)
+    const [editedAmount, setEditedAmount] = useState(record.sign === "positive" ? record.amount : -record.amount)
     const [editedSign, setEditedSign] = useState(record.sign)
 
     const handleCancel = () => {
@@ -22,7 +22,12 @@ const EditingComponent = ({ recordToBeEdit, setShowEditBoard }) => {
 
     const handleSaving = (e) => {
         e.preventDefault()
-        dispatch(editRec({ id: record.id, editedDesc, editedAmount, editedSign }))
+        dispatch(editRec({
+            id: record.id,
+            editedDesc,
+            editedAmount: editedSign === "positive" ? +editedAmount : -Math.abs(editedAmount),
+            editedSign
+        }))
         setShowEditBoard(false)
     }
 

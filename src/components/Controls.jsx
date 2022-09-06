@@ -18,7 +18,7 @@ const Controls = ({ setShowNew, setShowEdit }) => {
     return (
         <div className='controls d-flex justify-content-evenly mb-3 gap-2   ' >
             <Button variant='primary' onClick={(e) => handleOpenModalNew(e)}>New Transaction <AiOutlineTransaction color='#fff' size={23} /></Button>
-            <Button variant='primary' onClick={(e) => handleOpenModalEdit(e)}>Edit History <AiOutlineEdit color='#fff' size={23} /></Button>
+            <Button disabled={false} variant='primary' onClick={(e) => handleOpenModalEdit(e)}>Edit History <AiOutlineEdit color='#fff' size={23} /></Button>
         </div>
     )
 }
