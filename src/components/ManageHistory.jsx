@@ -38,7 +38,7 @@ const ManageHistory = ({ setShowEdit }) => {
                     <div className="history-cards d-flex flex-column w-100 my-4">
                         {/* {console.log(records)} */}
                         {
-                            records.records.length ? records.records.map((record) => {
+                            records.records.map((record) => {
                                 console.log(records.records)
                                 return (
                                     <div className={`card d-flex justify-content-between flex-row py-2 px-4 shadow-sm  my-2 ${record.sign === "positive" ? "bg-success" : "bg-danger"} text-light w-100`} key={record.id}>
@@ -49,7 +49,7 @@ const ManageHistory = ({ setShowEdit }) => {
                                         </div>
                                         <span style={{ width: "30%", textAlign: "right" }}>{`$${record.amount.toFixed(2)}`}</span>
                                     </div>)
-                            }) : <h6>No transactions to display</h6>
+                            })
                         }
                     </div>
                     <Button variant="outline-danger" onClick={handleClose}>Close</Button>
