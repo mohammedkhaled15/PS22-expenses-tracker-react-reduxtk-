@@ -42,12 +42,12 @@ const ManageHistory = ({ setShowEdit }) => {
                                 console.log(records.records)
                                 return (
                                     <div className={`card d-flex justify-content-between flex-row py-2 px-4 shadow-sm  my-2 ${record.sign === "positive" ? "bg-success" : "bg-danger"} text-light w-100`} key={record.id}>
-                                        <span style={{ width: "max-content" }}>{record.desc}</span>
-                                        <div className='edit d-flex justify-content-between w-25'>
-                                            <FiEdit style={{ cursor: "pointer" }} onClick={(e) => handleEdit(e, record.id)} />
-                                            <MdDelete style={{ cursor: "pointer" }} onClick={(e) => handleDelete(e, record.id)} />
+                                        <span style={{ width: "30%", textAlign: "left" }}>{record.desc}</span>
+                                        <div className='edit d-flex justify-content-center align-items-center w-25 gap-2'>
+                                            <FiEdit style={{ cursor: "pointer", fontSize: "1.4rem" }} onClick={(e) => handleEdit(e, record.id)} />
+                                            <MdDelete style={{ cursor: "pointer", fontSize: "1.4rem" }} onClick={(e) => handleDelete(e, record.id)} />
                                         </div>
-                                        <span style={{ width: "30 %" }}>{`$${record.amount.toFixed(2)}`}</span>
+                                        <span style={{ width: "30%", textAlign: "right" }}>{`$${record.amount.toFixed(2)}`}</span>
                                     </div>)
                             }) : <h6>No transactions to display</h6>
                         }

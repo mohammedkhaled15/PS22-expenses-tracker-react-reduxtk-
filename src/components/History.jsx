@@ -15,7 +15,7 @@ const History = () => {
     const recordsToMap = records.length > 3 ? lastThreeRecords(records) : records
 
     return (
-        <div className='history mb-5'>
+        <div className='history mb-5 mt-3'>
             <h2 className='fs-5'>History</h2>
             <div className="hr-divider"></div>
             <div className="history-cards">
